@@ -226,6 +226,26 @@
   body { margin: 0; }
   ::selection { background: var(--accent); color: #fff; }
   a { color: inherit; text-decoration: none; }
+
+  /* ---- responsive (added) ---- */
+  @media (max-width: 900px) {
+    #tq-stops { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 768px) {
+    /* nav: keep logo + Book-a-call, drop the in-page text links */
+    #tq-nav a:not(:last-child) { display: none !important; }
+    #tq-nav { gap: 0 !important; }
+    /* collapse multi-column grids */
+    #tq-stops, #tq-steps { grid-template-columns: 1fr !important; gap: 28px !important; }
+    /* services: stack number / title / description */
+    #services a { flex-direction: column !important; gap: 10px !important; padding: 26px 0 !important; }
+    #services a > div:nth-child(2) { width: auto !important; }
+    /* tighter side padding on phones */
+    #top, #range, #approach, #services > div, #contact > div {
+      padding-left: 22px !important; padding-right: 22px !important;
+    }
+    #top { padding-top: 64px !important; }
+  }
 </style>
 </helmet>
 
@@ -235,7 +255,7 @@
   <div style="position:sticky;top:0;z-index:50;background:rgba(245,244,239,0.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
     <div style="max-width:1140px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;">
       <a href="#top" style="font-size:19px;font-weight:700;letter-spacing:-0.02em;">TapQuality<span style="color:var(--accent);">.</span></a>
-      <div style="display:flex;align-items:center;gap:30px;">
+      <div id="tq-nav" style="display:flex;align-items:center;gap:30px;">
         <a href="#range" style="font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);">What I do</a>
         <a href="#services" style="font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);">Services</a>
         <a href="#approach" style="font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);">Approach</a>
@@ -285,7 +305,7 @@
     </div>
 
     <!-- stops -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:30px;">
+    <div id="tq-stops" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:30px;">
       <div>
         <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:10px;">STOP 01</div>
         <div style="font-size:19px;font-weight:600;letter-spacing:-0.01em;">Advise &amp; audit</div>
@@ -343,7 +363,7 @@
   <!-- ============ APPROACH ============ -->
   <div id="approach" style="max-width:1140px;margin:0 auto;padding:96px 32px 88px;">
     <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1;letter-spacing:-0.02em;margin:0 0 56px;max-width:14ch;">A simple, honest way of working.</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;">
+    <div id="tq-steps" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;">
       <div style="border-top:2px solid var(--ink);padding-top:20px;">
         <div style="font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:14px;">01 / UNDERSTAND</div>
         <div style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;">Start with the real problem</div>
